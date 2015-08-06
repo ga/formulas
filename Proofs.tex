@@ -1,0 +1,66 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath, amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{slashed}
+\usepackage{commath}
+\usepackage[style=phys, biblabel=brackets, eprint=true, sorting=none, backend=biber, maxnames=99]{biblatex}
+\usepackage{graphicx}
+
+%Bibliographies
+
+
+%Page Settings
+\setlength{\textwidth}{14.5cm}
+\setlength{\textheight}{22.5cm}
+\setlength{\topmargin}{-5mm}%{-1.5cm}
+%\setlength{\evensidemargin}{0.36cm}
+\setlength{\oddsidemargin}{5mm}%{0.36cm}
+
+%Better, emptier empty set
+\renewcommand{\emptyset}{\varnothing}
+
+\newcommand{\GA}[2][]{\ensuremath{\mathcal{G}_{#1}({#2})}}
+\newcommand{\grade}[2]{\ensuremath{\langle#2\rangle_{#1}}}
+\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}}
+\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
+\newcommand{\reverse}[1]{\tilde{#1}} %The Clifford reverse
+\newcommand{\reals}[1]{\ensuremath{\mathbb{R}^{#1}}}
+\newcommand{\vol}[1]{\ensuremath{\mathrm{vol}(#1)}}
+\newcommand{\linner}{\ensuremath{\rfloor}}
+\newcommand{\rinner}{\ensuremath{\lfloor}}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+
+\newcommand{\comment}[1]{}
+
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\tr}{Tr}
+
+\newenvironment{minipeqn}[1][]{\begin{minipage}[#1]{.45\textwidth}\begin{equation}}{\nonumber\end{equation}\end{minipage}}
+
+%opening
+\title{Proofs for Formulas in Geometric Algebra and Geometric Calculus}
+
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This file shall contain proofs and derivations for such formulas in the main collection which are not found in published literature. If you want to submit a pull request for a formula which you derived yourself, and have not published an article exposing the proof that could be cited, this is the place to submit the derivation.
+
+\printbibliography[heading=bibintoc, title={References}]
+
+\end{document}
