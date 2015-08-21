@@ -36,6 +36,7 @@
 
 \providecommand{\abs}[1]{\lvert#1\rvert}
 \providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\normed}[1]{\hat{#1}}
 \DeclareMathOperator{\sign}{sgn}
 \DeclareMathOperator{\tr}{Tr}
 
@@ -63,6 +64,18 @@ A_r \cdot B_s &=& 0,\ \textrm{if}\ r = 0\ \textrm{or}\ s = 0\\
 a \linner b &=& a \rinner b = a \cdot b
 \end{eqnarray}
 
+Scalar product and norm:
+\begin{eqnarray}
+ A * B &=& \grade{}{AB}\\
+ \norm{A}^2 &=& \reverse{A} * B\\
+ \normed{A} &=& \frac{A}{\norm{A}}
+\end{eqnarray}
+
+Projection:
+\begin{eqnarray}
+ P_B(A) &=& B^{-1}(B \rinner A)
+\end{eqnarray}
+
 \section{Geometric Algebra}
 
 \subsection{Basic identities}
@@ -85,6 +98,35 @@ More generally \cite{CA2GC, Chisolm:2012aa}:
  \grade{q}{A_r B_s C_t} &=& (-1)^{(q^2 + r^2 + s^2 + t^2 - q - r - s - t)/2} \grade{q}{C_t B_s A_r}
 \end{eqnarray}
 \section{Directed derivatives}
+
+The variable being differentiated is denoted $X$ when the formula is valid for multivectors, and $x$ when it applies only to vectors. Correspondingly, the direction being differentiated in is denoted $a$ and $A$ for vector and multivector directions, respectively.
+
+We assume that the direction $A$ only contains the grades in $X$. If not, the $A$ on the right hand side becomes $P(A)$, where $P$ is the projection to the grades of $X$.
+
+Note that we use the definition $A * B = \grade{}{A B}$ for the scalar product. Changing this would give slight differences in the results.
+
+Elementary derivatives \cite{HitzerCalculus}:
+\begin{eqnarray}
+A * \partial  X &=& A\\
+A * \partial (X * B)  &=&  A * B
+\end{eqnarray}
+
+The norm and the unit multivector, for $\norm{X} \neq 0$:
+\begin{eqnarray}
+A * \partial \norm{X}^2 &=& 2 A * \reverse{X}\\
+A * \partial \norm{X} &=& \frac{A * \reverse{X}}{\norm{X}}\\
+A * \partial \normed{X} &=& \frac{A \norm{X} - A * \normed{X} \reverse{X}}{\norm{X}^2}\\
+A * \partial \norm{X}^k &=& k A * \normed{\reverse{X}} \norm{X}^{k-1}
+\end{eqnarray}
+
+Powers of a $k$-blade $X_k$ in the direction of $k$-vector $A_k$:
+%Should we come up with a notation for a blade, or is the distinction $X_k$ enough?
+\begin{eqnarray}
+A_k * \partial X_k^n &=& n A_k * \normed{X_k} \norm{X_k}^{n-1},\quad n\ \mathrm{even}\\
+A_k * \partial X_k^n &=& \left(A_k + (n-1) A_k*\normed{X_k}\normed{X_k}\right) X^{n-1}
+=\nonumber\\
+&=& \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \mathrm{odd}
+\end{eqnarray}
 
 \section{Vector derivatives}
 
