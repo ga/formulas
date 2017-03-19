@@ -64,14 +64,13 @@ A_r \cdot B_s &=& 0,\ \textrm{if}\ r = 0\ \textrm{or}\ s = 0\\
 a \linner b &=& a \rinner b = a \cdot b
 \end{eqnarray}
 
-Scalar product and norm:
-\begin{eqnarray}
- A * B &=& \grade{}{AB}\\
- \norm{A}^2 &=& \reverse{A} * B\\
- \normed{A} &=& \frac{A}{\norm{A}}
-\end{eqnarray}
 
-Projection:
+Scalar product and norm:
+\begin{align}
+ A * B &= \grade{}{AB}\\
+ \norm{A} &= \sqrt{|\reverse{A} * A|}\\
+ \normed{A} &= \frac{A}{\norm{A}}
+\end{align}
 \begin{eqnarray}
  P_B(A) &=& B^{-1}(B \rinner A)
 \end{eqnarray}
