@@ -131,12 +131,14 @@ A * \partial \norm{X}^k &= \signX{X} k A * \normed{\reverse{X}} \norm{X}^{k-1}
 
 Powers of a $k$-blade $X_k$ in the direction of $k$-vector $A_k$:
 %Should we come up with a notation for a blade, or is the distinction $X_k$ enough?
-\begin{eqnarray}
-A_k * \partial X_k^n &=& n A_k * \normed{X_k} \norm{X_k}^{n-1},\quad n\ \mathrm{even}\\
-A_k * \partial X_k^n &=& \left(A_k + (n-1) A_k*\normed{X_k}\normed{X_k}\right) X^{n-1}
-=\nonumber\\
-&=& \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \mathrm{odd}
-\end{eqnarray}
+\begin{align}
+A_k * \partial X_k^n &= n A_k *X_k X_k^{n - 2} \quad n\ \mathrm{even}&&\\
+%&= n  \signX{X_k}^{\frac{n}{2} - 1}(-1)^{\frac{k(k-1)}{2}(\frac{n}{2} - 1)}A_k * \normed{X_k} \norm{X_k}^{n-1}\\
+&= n A_k * X_k^{-1} X_k^{n},\quad n \textrm{ even and invertible}&&\\
+A_k * \partial X_k^n &= A_k X_k^{n-1} + (n-1) A_k*X_k X_k^{n-2}
+\quad n \textrm{ odd}&&\nonumber\\
+&= \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \textrm{odd and invertible}&&
+\end{align}
 
 \section{Vector derivatives}
 
