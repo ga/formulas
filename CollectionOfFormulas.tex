@@ -106,6 +106,23 @@ More generally \cite{CA2GC, Chisolm:2012aa}:
  \grade{r+s-2j}{A_r B_s} &=& (-1)^{rs - j} \grade{r + s - 2j}{B_s A_r}\\
  \grade{q}{A_r B_s C_t} &=& (-1)^{(q^2 + r^2 + s^2 + t^2 - q - r - s - t)/2} \grade{q}{C_t B_s A_r}
 \end{eqnarray}
+
+\subsection{Functions}
+
+The exponential:
+\begin{align}
+\exp(A) := e^{A} =  \sum_{k = 0}^\infty \frac{1}{k!} A^k.
+\end{align}
+Via the standard proof, the exponential converges in the $\norm{\cdot}$ -norm for all $A$.
+
+For blade $A_k$,
+\begin{align}
+e^{A_k} = \left\{\begin{aligned}
+	 &\cos(\norm{A_k}) + \normed{A_k} \sin(\norm{A_k}), &\sign{A_k^2} \leq 0&\\
+	&\cosh(\norm{A_k}) + \normed{A_k} \sinh(\norm{A_k}), &\sign{A_k^2} \geq 0&.
+	\end{aligned} \right.
+\end{align}
+
 \section{Directed derivatives}
 
 The variable being differentiated is denoted $X$ when the formula is valid for multivectors, and $x$ when it applies only to vectors. Correspondingly, the direction being differentiated in is denoted $a$ and $A$ for vector and multivector directions, respectively.
