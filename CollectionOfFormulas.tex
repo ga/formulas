@@ -74,8 +74,15 @@ Scalar product and norm:
  \norm{A} &= \sqrt{|\reverse{A} * A|}\\
  \normed{A} &= \frac{A}{\norm{A}}
 \end{align}
+
+Inverse, when $A_k$ a $k$ -blade and $\norm{A_k} \neq 0$, \emph{i.e.} $A_k$ is an invertible blade:
+\begin{equation}
+A_k^{-1} = \frac{A_k}{A_k^2} = \frac{\signX{A_k}\reverse{A_k}}{\norm{A_k}^2}.
+\end{equation}
+
+Projection to subspace defined by $k$ -blade $B_k$, when $\norm{B_k} \neq 0$:
 \begin{eqnarray}
- P_B(A) &=& B^{-1}(B \rinner A)
+ P_{B_k}(A) &=& B^{-1}_{k}(B_k \rinner A)
 \end{eqnarray}
 
 \section{Geometric Algebra}
