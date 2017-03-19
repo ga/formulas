@@ -121,12 +121,13 @@ A * \partial (X * B)  &=&  A * B
 \end{eqnarray}
 
 The norm and the unit multivector, for $\norm{X} \neq 0$:
-\begin{eqnarray}
-A * \partial \norm{X}^2 &=& 2 A * \reverse{X}\\
-A * \partial \norm{X} &=& \frac{A * \reverse{X}}{\norm{X}}\\
-A * \partial \normed{X} &=& \frac{A \norm{X} - A * \normed{X} \reverse{X}}{\norm{X}^2}\\
-A * \partial \norm{X}^k &=& k A * \normed{\reverse{X}} \norm{X}^{k-1}
-\end{eqnarray}
+\begin{align}
+A * \partial \norm{X}^2 &= \signX{X}2 A * \reverse{X}\\
+A * \partial \norm{X} &= \signX{X} \frac{A * \reverse{X}}{\norm{X}}\\
+A * \partial \normed{X} &= \frac{A \norm{X} - \signX{X} A * \normed{X} \reverse{X}}{\norm{X}^2}\quad \textrm {for all $X$}\nonumber\\
+&= \frac{A - A * X X^{-1}}{\norm{X}} = \frac{A- P_{X}(A)}{\norm{X}}\quad \textrm{when $X$ an invertible blade}\\
+A * \partial \norm{X}^k &= \signX{X} k A * \normed{\reverse{X}} \norm{X}^{k-1}
+\end{align}
 
 Powers of a $k$-blade $X_k$ in the direction of $k$-vector $A_k$:
 %Should we come up with a notation for a blade, or is the distinction $X_k$ enough?
