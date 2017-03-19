@@ -39,6 +39,7 @@
 \providecommand{\normed}[1]{\hat{#1}}
 \DeclareMathOperator{\sign}{sgn}
 \DeclareMathOperator{\tr}{Tr}
+\providecommand{\signX}[1]{\ensuremath{s_{#1}}}
 
 \newenvironment{minipeqn}[1][]{\begin{minipage}[#1]{.45\textwidth}\begin{equation}}{\nonumber\end{equation}\end{minipage}}
 
@@ -64,6 +65,8 @@ A_r \cdot B_s &=& 0,\ \textrm{if}\ r = 0\ \textrm{or}\ s = 0\\
 a \linner b &=& a \rinner b = a \cdot b
 \end{eqnarray}
 
+We define $\signX{X} := \sign{X * \reverse{X}}$ for multivector $X$.
+In a space with positive definite signature $\signX{X} = 1$ for all multivectors.
 
 Scalar product and norm:
 \begin{align}
