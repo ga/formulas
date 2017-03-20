@@ -158,6 +158,15 @@ A_k * \partial X_k^n &= A_k X_k^{n-1} + (n-1) A_k*X_k X_k^{n-2}
 &= \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \textrm{odd and invertible}&&
 \end{align}
 
+Exponential of a blade:
+\begin{equation}
+A_k *\partial e^{X_k} = \left\{\begin{aligned}
+&P_{X_k}(A_k) e^{X_k} + (A_k - P_{X_k}(A_k)) \frac{\sin(\norm{X_k})}{\norm{X_k}}, &\sign{X_k^2} < 0&\\
+&P_{X_k}(A_k) e^{X_k} + (A_k - P_{X_k}(A_k)) \frac{\sinh(\norm{X_k})}{\norm{X_k}}, &\sign{X_k^2} > 0&\\
+&A_k, &X_k^2 = 0&
+\end{aligned} \right.
+\end{equation}
+
 \section{Vector derivatives}
 
 \section{Antiderivatives}
