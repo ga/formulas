@@ -8,9 +8,11 @@
 \usepackage{commath}
 \usepackage[style=phys, biblabel=brackets, eprint=true, sorting=none, backend=biber, maxnames=99]{biblatex}
 \usepackage{graphicx}
+\usepackage{xr}
+\externaldocument[form]{CollectionOfFormulas}
 
 %Bibliographies
-
+\addbibresource{References.bib}
 
 %Page Settings
 \setlength{\textwidth}{14.5cm}
@@ -19,18 +21,9 @@
 %\setlength{\evensidemargin}{0.36cm}
 \setlength{\oddsidemargin}{5mm}%{0.36cm}
 
-%Better, emptier empty set
-\renewcommand{\emptyset}{\varnothing}
+\input{defs}
 
-\newcommand{\GA}[2][]{\ensuremath{\mathcal{G}_{#1}({#2})}}
-\newcommand{\grade}[2]{\ensuremath{\langle#2\rangle_{#1}}}
-\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}}
-\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
-\newcommand{\reverse}[1]{\tilde{#1}} %The Clifford reverse
-\newcommand{\reals}[1]{\ensuremath{\mathbb{R}^{#1}}}
-\newcommand{\vol}[1]{\ensuremath{\mathrm{vol}(#1)}}
-\newcommand{\linner}{\ensuremath{\rfloor}}
-\newcommand{\rinner}{\ensuremath{\lfloor}}
+\newcommand{\meqref}[1]{M.\eqref{form#1}}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -38,13 +31,6 @@
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
-
-\newcommand{\comment}[1]{}
-
-\providecommand{\abs}[1]{\lvert#1\rvert}
-\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
-\DeclareMathOperator{\sign}{sgn}
-\DeclareMathOperator{\tr}{Tr}
 
 \newenvironment{minipeqn}[1][]{\begin{minipage}[#1]{.45\textwidth}\begin{equation}}{\nonumber\end{equation}\end{minipage}}
 
@@ -60,6 +46,58 @@
 \section{Introduction}
 
 This file shall contain proofs and derivations for such formulas in the main collection which are not found in published literature. If you want to submit a pull request for a formula which you derived yourself, and have not published an article exposing the proof that could be cited, this is the place to submit the derivation.
+
+Formulae in this document will be referenced as usual, (xx), and formulae in the main document as M.(xx).
+\section{Multivector directed derivatives}
+
+Many of the following are present and proven in the literature, however, as they follow in a nice logical sequence, we present the proofs here.
+We wish to remind the reader that $\signX{X} = \sign{X * \reverse{X}}$, as defined in the main text.
+
+\paragraph{Proof of \meqref{eq:normsqrdif}:} write $\norm{X}^2 = \signX{X} X * \reverse{X}$, use the product rule (Proposition 8. in \cite{HitzerCalculus}) and \meqref{eq:scalpdiff}.
+
+\paragraph{Proof of \meqref{eq:normdif}:} Write $\norm{X} = \sqrt{\norm{X}^2}$ and use the chain rule with $x \mapsto \sqrt{x}$ ($x$ a real number) and \meqref{eq:normsqrdif}.
+
+\paragraph{Proof of \meqref{eq:normeddif}:} write
+\begin{equation}
+A*\partial \normed{X} = A*\dot{\partial} \frac{\dot{X}}{\norm{X}} + A*\dot{\partial} X \frac{1}{\dot{\norm{X}}} = \frac{A}{\norm{X}} - X \frac{\signX{X} \frac{A * \reverse{X}}{\norm{X}}}{\norm{X}^2}
+\end{equation}
+and simplify, where we used the product rule and chain rule on $x \mapsto 1/x$ and $\meqref{eq:normeddif}$.
+The second line follows immediately from the definition of the inverse \meqref{eq:inversedef} and the projection \meqref{eq:projdef}.
+
+\paragraph{Proof of \meqref{eq:evenbladedif}:} for a blade, $X_k^2 = X_k * X_k$.
+Apply the product rule to get $A_k*\partial X_k^2 = 2 A_k * X_k$, and the chain rule to $(X_k^2)^{n/2}$ to get the result.
+The second line follows from $X_k^{-1} = \frac{X_k}{X_k^2}$, when $X_k$ is invertible.
+
+\paragraph{Proof of \meqref{eq:oddbladedif}:} Write $X_k^n = X_k X_k^{n-1}$, where now $n-1$ is even.
+Use the product rule and the fact that $X_k^{n-1}$ commutes, and apply \meqref{eq:evenbladedif}.
+The second line again follows from the definition of the projection when $X_k$ is invertible.
+
+\paragraph{Proof of \meqref{eq:bladeexpdif}:} for $X_k^2 < 0$: use \meqref{eq:bladeexptrig} to write
+\begin{equation}
+A_k * \partial e^{X_k} = A_k * \partial(\cos(\norm{X_k}) + \normed{X_k} \sin(\norm{X_k})),
+\end{equation}
+apply the chain rule and \meqref{eq:normdif} to differentiate the sine and cosine terms, and \meqref{eq:normeddif} ($X_k$ is invertible since $X_k^2 < 0$) to to differentiate $\normed{X_k}$ to get
+\begin{equation}
+\begin{split}
+A_k * \partial e^{X_k} =& -\signX{X_k}\frac{A_k*\reverse{X_k}}{\norm{X_k}}\sin(\norm{X_k}) + \signX{X_k}\frac{A_k*\reverse{X_k}}{\norm{X_k}} \normed{X_k} \cos(\norm{X_k})\\
+ &+ \frac{A- P_{X}(A)}{\norm{X}} \sin{\norm{X_k}}.
+\end{split}
+\end{equation}
+Since $\normed{X_k}^2 = -1$, we can pull out a factor of
+\begin{equation*}
+\signX{X_k}\frac{A_k*\reverse{X_k}}{\norm{X_k}}\normed{X_k} = P_{X_k}(A_k)
+\end{equation*}
+from the trigonometric terms and rewrite that as an exponential.
+
+The case $X_k^2 > 0$ goes identically, with the appropriate substitutions of hyperbolic functions for the ordinary ones.
+
+The case $X_k^2 = 0$ goes as follows: first observe that $(X_k + \epsilon A_k)^2 = \epsilon (X_k A_k + A_k X_k) + \mathcal{O}(\epsilon^2)$.
+Then by associativity $(X_k + \epsilon A_k)^{2n} = \mathcal{O}(\epsilon^n)$ and $(X_k + \epsilon A_k)^{2n + 1} = \mathcal{O}(\epsilon^n)$, for $n \geq 1$.
+Therefore we can write the power series
+\begin{equation*}
+ e^{X_k + \epsilon A_k} = 1 + X_k + \epsilon A_k + \frac{1}{2} \epsilon (A_k X_k + X_k A_k) + \frac{1}{3!} \epsilon X_k A_k X_k + \mathcal{O}(\epsilon^2),
+\end{equation*}
+and the claim follows immediately from the definition $A_k * \partial e^{X_k} = \frac{\dif}{\dif \epsilon} e^{X_k + \epsilon A_k} \vert_{\epsilon = 0}$.
 
 \printbibliography[heading=bibintoc, title={References}]
 
