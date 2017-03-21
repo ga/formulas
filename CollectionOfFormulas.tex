@@ -57,11 +57,13 @@ Scalar product and norm:
 
 Inverse, when $A_k$ a $k$ -blade and $\norm{A_k} \neq 0$, \emph{i.e.} $A_k$ is an invertible blade:
 \begin{equation}
+\label{eq:inversedef}
 A_k^{-1} = \frac{A_k}{A_k^2} = \frac{\signX{A_k}\reverse{A_k}}{\norm{A_k}^2}.
 \end{equation}
 
 Projection to subspace defined by $k$ -blade $B_k$, when $\norm{B_k} \neq 0$:
 \begin{eqnarray}
+\label{eq:projdef}
  P_{B_k}(A) &=& B^{-1}_{k}(B_k \rinner A)
 \end{eqnarray}
 
@@ -91,12 +93,14 @@ More generally \cite{CA2GC, Chisolm:2012aa}:
 
 The exponential:
 \begin{align}
+\label{eq:expdef}
 \exp(A) := e^{A} =  \sum_{k = 0}^\infty \frac{1}{k!} A^k.
 \end{align}
 Via the standard proof, the exponential converges in the $\norm{\cdot}$ -norm for all $A$.
 
 For blade $A_k$,
 \begin{align}
+\label{eq:bladeexptrig}
 e^{A_k} = \left\{\begin{aligned}
 	 &\cos(\norm{A_k}) + \normed{A_k} \sin(\norm{A_k}), &\sign{A_k^2} < 0&\\
 	&\cosh(\norm{A_k}) + \normed{A_k} \sinh(\norm{A_k}), &\sign{A_k^2} > 0&\\
@@ -115,8 +119,9 @@ Note that we use the definition $A * B = \grade{}{A B}$ for the scalar product. 
 Elementary derivatives \cite{HitzerCalculus}:
 \begin{eqnarray}
 %Hitzer page 6, 7
-\label{eq:basic1}
+\label{eq:iddiff}
 A * \partial  X &=& A\\
+\label{eq:scalpdiff}
 A * \partial (X * B)  &=&  A * B
 \end{eqnarray}
 
@@ -143,16 +148,19 @@ A * \partial \norm{X}^k &= \signX{X} k A * \normed{\reverse{X}} \norm{X}^{k-1}
 Powers of a $k$-blade $X_k$ in the direction of $k$-vector $A_k$:
 %Should we come up with a notation for a blade, or is the distinction $X_k$ enough?
 \begin{align}
+\label{eq:evenbladedif}
 A_k * \partial X_k^n &= n A_k *X_k X_k^{n - 2} \quad n\ \mathrm{even}&&\\
 %&= n  \signX{X_k}^{\frac{n}{2} - 1}(-1)^{\frac{k(k-1)}{2}(\frac{n}{2} - 1)}A_k * \normed{X_k} \norm{X_k}^{n-1}\\
 &= n A_k * X_k^{-1} X_k^{n},\quad n \textrm{ even and invertible}&&\\
 A_k * \partial X_k^n &= A_k X_k^{n-1} + (n-1) A_k*X_k X_k^{n-2}
 \quad n \textrm{ odd}&&\nonumber\\
+\label{eq:oddbladedif}
 &= \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \textrm{odd and invertible}&&
 \end{align}
 
 Exponential of a blade:
 \begin{equation}
+\label{eq:bladeexpdif}
 A_k *\partial e^{X_k} = \left\{\begin{aligned}
 &P_{X_k}(A_k) e^{X_k} + (A_k - P_{X_k}(A_k)) \frac{\sin(\norm{X_k})}{\norm{X_k}}, &\sign{X_k^2} < 0&\\
 &P_{X_k}(A_k) e^{X_k} + (A_k - P_{X_k}(A_k)) \frac{\sinh(\norm{X_k})}{\norm{X_k}}, &\sign{X_k^2} > 0&\\
