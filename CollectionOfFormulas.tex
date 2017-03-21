@@ -138,6 +138,13 @@ A * \partial  X &=& A\\
 A * \partial (X * B)  &=&  A * B
 \end{eqnarray}
 
+Given a multivector valued functions $f(X)$ and $F(X)$, the function $G(X) := F(f(X))$ obeys the chain rule \cite{HitzerCalculus}:
+\begin{equation}
+%Hitzer page 7:
+\label{eq:chainrule}
+A * \partial G(X) = (A * \partial f(X))*\partial_Y F(Y)\vert_{Y = f(X)}.
+\end{equation}
+
 The norm and the unit multivector, for $\norm{X} \neq 0$:
 \begin{align}
 A * \partial \norm{X}^2 &= \signX{X}2 A * \reverse{X}\\
