@@ -154,13 +154,17 @@ Powers of a $k$-blade $X_k$ in the direction of $k$-vector $A_k$:
 \begin{align}
 %proofs document
 \label{eq:evenbladedif}
-A_k * \partial X_k^n &= n A_k *X_k X_k^{n - 2} \quad n\ \mathrm{even}&&\\
+\begin{split}
+A_k * \partial X_k^n &= n A_k *X_k X_k^{n - 2} \quad n\ \mathrm{even}\\
 %&= n  \signX{X_k}^{\frac{n}{2} - 1}(-1)^{\frac{k(k-1)}{2}(\frac{n}{2} - 1)}A_k * \normed{X_k} \norm{X_k}^{n-1}\\
-&= n A_k * X_k^{-1} X_k^{n},\quad n \textrm{ even and invertible}&&\\
-A_k * \partial X_k^n &= A_k X_k^{n-1} + (n-1) A_k*X_k X_k^{n-2}
-\quad n \textrm{ odd}&&\nonumber\\
+&= n A_k * X_k^{-1} X_k^{n},\quad n \textrm{ even and invertible}
+\end{split}\\
 \label{eq:oddbladedif}
-&= \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \textrm{odd and invertible}&&
+\begin{split}
+A_k * \partial X_k^n &= A_k X_k^{n-1} + (n-1) A_k*X_k X_k^{n-2}
+\quad n \textrm{ odd}\\
+&= \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \textrm{odd and invertible}
+\end{split}
 \end{align}
 
 Exponential of a blade:
