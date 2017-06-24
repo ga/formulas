@@ -19,25 +19,7 @@
 %\setlength{\evensidemargin}{0.36cm}
 \setlength{\oddsidemargin}{5mm}%{0.36cm}
 
-%Better, emptier empty set
-\renewcommand{\emptyset}{\varnothing}
-
-\newcommand{\GA}[2][]{\ensuremath{\mathcal{G}_{#1}({#2})}}
-\newcommand{\grade}[2]{\ensuremath{\langle#2\rangle_{#1}}}
-\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d}{#1}}{\mathrm{d}{#2}}}}
-\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
-\newcommand{\reverse}[1]{\tilde{#1}} %The Clifford reverse
-\newcommand{\reals}[1]{\ensuremath{\mathbb{R}^{#1}}}
-\newcommand{\vol}[1]{\ensuremath{\mathrm{vol}(#1)}}
-\newcommand{\linner}{\ensuremath{\rfloor}}
-\newcommand{\rinner}{\ensuremath{\lfloor}}
-
-\newcommand{\comment}[1]{}
-
-\providecommand{\abs}[1]{\lvert#1\rvert}
-\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
-\DeclareMathOperator{\sign}{sgn}
-\DeclareMathOperator{\tr}{Tr}
+\input{defs}
 
 \newenvironment{minipeqn}[1][]{\begin{minipage}[#1]{.45\textwidth}\begin{equation}}{\nonumber\end{equation}\end{minipage}}
 
@@ -61,6 +43,28 @@ A_r \rinner B_s &=& \grade{r-s}{A_r B_s}\\
 A_r \cdot B_s &=& \grade{\abs{r-s}}{A_r B_s},\ \textrm{if}\ r, s \neq 0\\
 A_r \cdot B_s &=& 0,\ \textrm{if}\ r = 0\ \textrm{or}\ s = 0\\
 a \linner b &=& a \rinner b = a \cdot b
+\end{eqnarray}
+
+We define $\signX{X} := \sign{X * \reverse{X}}$ for multivector $X$.
+In a space with positive definite signature $\signX{X} = 1$ for all multivectors.
+
+Scalar product and norm:
+\begin{align}
+ A * B &= \grade{}{AB}\\
+ \norm{A} &= \sqrt{|\reverse{A} * A|}\\
+ \normed{A} &= \frac{A}{\norm{A}}
+\end{align}
+
+Inverse, when $A_k$ a $k$ -blade and $\norm{A_k} \neq 0$, \emph{i.e.} $A_k$ is an invertible blade:
+\begin{equation}
+\label{eq:inversedef}
+A_k^{-1} = \frac{A_k}{A_k^2} = \frac{\signX{A_k}\reverse{A_k}}{\norm{A_k}^2}.
+\end{equation}
+
+Projection to subspace defined by $k$ -blade $B_k$, when $\norm{B_k} \neq 0$:
+\begin{eqnarray}
+\label{eq:projdef}
+ P_{B_k}(A) &=& B^{-1}_{k}(B_k \rinner A)
 \end{eqnarray}
 
 \section{Geometric Algebra}
@@ -87,7 +91,91 @@ More generally \cite{CA2GC, Chisolm:2012aa}:
  \grade{r+s-2j}{A_r B_s} &=& (-1)^{rs - j} \grade{r + s - 2j}{B_s A_r}\\
  \grade{q}{A_r B_s C_t} &=& (-1)^{(q^2 + r^2 + s^2 + t^2 - q - r - s - t)/2} \grade{q}{C_t B_s A_r}
 \end{eqnarray}
+
+\subsection{Functions}
+
+The exponential:
+\begin{align}
+\label{eq:expdef}
+\exp(A) := e^{A} =  \sum_{k = 0}^\infty \frac{1}{k!} A^k.
+\end{align}
+Via the standard proof, the exponential converges in the $\norm{\cdot}$ -norm for all $A$.
+
+For blade $A_k$,
+\begin{align}
+\label{eq:bladeexptrig}
+e^{A_k} = \left\{\begin{aligned}
+	 &\cos(\norm{A_k}) + \normed{A_k} \sin(\norm{A_k}), &\sign{A_k^2} < 0&\\
+	&\cosh(\norm{A_k}) + \normed{A_k} \sinh(\norm{A_k}), &\sign{A_k^2} > 0&\\
+	&1 + A_k, &A_k^2 = 0&
+	\end{aligned} \right.
+\end{align}
+
 \section{Directed derivatives}
+
+The variable being differentiated is denoted $X$ when the formula is valid for multivectors, and $x$ when it applies only to vectors. Correspondingly, the direction being differentiated in is denoted $a$ and $A$ for vector and multivector directions, respectively.
+
+We assume that the direction $A$ only contains the grades in $X$. If not, the $A$ on the right hand side becomes $P(A)$, where $P$ is the projection to the grades of $X$.
+
+Note that we use the definition $A * B = \grade{}{A B}$ for the scalar product. Changing this would give slight differences in the results.
+
+Elementary derivatives \cite{HitzerCalculus}:
+\begin{eqnarray}
+%Hitzer page 6, 7
+\label{eq:iddiff}
+A * \partial  X &=& A\\
+\label{eq:scalpdiff}
+A * \partial (X * B)  &=&  A * B
+\end{eqnarray}
+
+Given multivector valued functions $f(X)$ and $F(X)$, the function $G(X) := F(f(X))$ obeys the chain rule \cite{HitzerCalculus}:
+\begin{equation}
+%Hitzer page 7:
+\label{eq:chainrule}
+A * \partial G(X) = (A * \partial f(X))*\partial_Y F(Y)\vert_{Y = f(X)}.
+\end{equation}
+
+The norm and the unit multivector, for $\norm{X} \neq 0$:
+\begin{align}
+%proofs document
+\label{eq:normsqrdif}
+A * \partial \norm{X}^2 &= \signX{X}2 A * \reverse{X}\\
+\label{eq:normdif}
+A * \partial \norm{X} &= \signX{X} \frac{A * \reverse{X}}{\norm{X}}\\
+\label{eq:normeddif}
+A * \partial \normed{X} &= \frac{A \norm{X} - \signX{X} A * \normed{X} \reverse{X}}{\norm{X}^2}\quad \textrm {for all $X$}\nonumber\\
+&= \frac{A - A * X X^{-1}}{\norm{X}} = \frac{A- P_{X}(A)}{\norm{X}}\quad \textrm{when $X$ an invertible blade}\\
+\label{eq:normtokdif}
+A * \partial \norm{X}^k &= \signX{X} k A * \normed{\reverse{X}} \norm{X}^{k-1}
+\end{align}
+
+Powers of a $k$-blade $X_k$ in the direction of $k$-vector $A_k$:
+%Should we come up with a notation for a blade, or is the distinction $X_k$ enough?
+\begin{align}
+%proofs document
+\label{eq:evenbladedif}
+\begin{split}
+A_k * \partial X_k^n &= n A_k *X_k X_k^{n - 2} \quad n\ \mathrm{even}\\
+&= n A_k * X_k^{-1} X_k^{n},\quad n \textrm{ even and invertible}
+\end{split}\\
+\label{eq:oddbladedif}
+\begin{split}
+A_k * \partial X_k^n &= A_k X_k^{n-1} + (n-1) A_k*X_k X_k^{n-2}
+\quad n \textrm{ odd}\\
+&= \left(A_k + (n-1) P_{X_k}(A_k)\right) X_k^{n-1},\quad n\ \textrm{odd and invertible}
+\end{split}
+\end{align}
+
+Exponential of a blade:
+\begin{equation}
+%proofs document
+\label{eq:bladeexpdif}
+A_k *\partial e^{X_k} = \left\{\begin{aligned}
+&P_{X_k}(A_k) e^{X_k} + (A_k - P_{X_k}(A_k)) \frac{\sin(\norm{X_k})}{\norm{X_k}}, &\sign{X_k^2} < 0&\\
+&P_{X_k}(A_k) e^{X_k} + (A_k - P_{X_k}(A_k)) \frac{\sinh(\norm{X_k})}{\norm{X_k}}, &\sign{X_k^2} > 0&\\
+&A_k + \frac{1}{2}(A_k X_k + X_k A_k) + \frac{1}{6}X_k A_k X_k, &X_k^2 = 0&
+\end{aligned} \right.
+\end{equation}
 
 \section{Vector derivatives}
 
